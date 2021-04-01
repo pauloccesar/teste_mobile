@@ -13,6 +13,7 @@ export default function List() {
   const [masterDataSource, setMasterDataSource] = useState([]);
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [banks, setBanks] = useState([])
+  const [input, setInput] = useState([])
 
 
 
@@ -71,8 +72,8 @@ export default function List() {
           <Input
             placeholder="Digite o código do banco"
             placeholderTextColor='#353840'
-            // value={input}
-            anChangeText={(text) => setInput(text)}
+          // value={input}
+          // anChangeText={(text) => setInput(text)}
           />
         </AreaInput>
       </Container1>
@@ -82,7 +83,7 @@ export default function List() {
         keyExtractor={(banks) => banks.name}
         contentContainerStyle={{ flexGrow: 1 }}
         renderItem={({ item: bank }) => (
-          <TouchableOpacity onPress={() => { }}>
+          <TouchableOpacity onPress={() => navigateToRegister(bank)}>
             <Container>
               <View >
                 <Text  >{bank.name}</Text>

@@ -1,8 +1,11 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-flex:1;
-background-color: #36393f;
+background-color: #3f2454;
+elevation: 3;
+margin: 8px 2%;
+border-radius: 8px;
+box-shadow: 1px 1px 3px rgba(18,18,18, 0.2);
 `;
 
 
@@ -22,4 +25,16 @@ right: 6%;
 export const ListPosts = styled.FlatList`
 flex:1;
 background-color: #f1f1f1;
+`;
+
+export const SafeAreaView = styled.View`
+background-color: #FFF;
+padding-top: 50px;
+height: 100%;
+`;
+
+export const Text = styled.Text`
+font-Size: 18px;
+color: #fff;
+padding: 2px;
 `;

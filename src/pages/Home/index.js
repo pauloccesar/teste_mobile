@@ -1,40 +1,44 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { View, Text } from 'react-native';
-import { Container, ButtonPost, ListPosts } from './styles';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { View, Button } from 'react-native';
+import { Container, ButtonPost, ListPosts, SafeAreaView, Text } from './styles';
 import Feather from 'react-native-vector-icons/Feather';
-import Header from '../../components/Header';
 
 export default function Home() {
-  const navigation = useNavigation();
-
+  const route = useRoute();
+  const name = "name";
+  const ispb = "ispb";
+  const code = "code";
+  const fullName = "fullName";
   const [posts, setPosts] = useState([
     { id: '1', nome: 'Matheus' },
     { id: '2', nome: 'Jose' },
     { id: '3', nome: 'Lucas' },
+
   ]);
+
+  const navigation = useNavigation();
+
+  function navigateToRegister() {
+    navigation.navigate('List')
+  }
+
   return (
-    <Container>
-      <Header />
-
-      <ListPosts
-        data={posts}
-        renderItem={(item) => (
-          <Text>TESTE</Text>,
-          <Text>TESTE</Text>,
-          <Text>TESTE</Text>,
-          <Text>TESTE</Text>
-        )}
+    <SafeAreaView>
+      <Button
+        title="Cadastrar"
+        color="#be97c6"
+        onPress={() => navigateToRegister()}
       />
+      <Container >
+        <View >
+          <Text  >{name}</Text>
+          <Text  >{ispb}</Text>
+          <Text >{code}</Text>
+          <Text >{fullName}</Text>
+        </View>
+      </Container >
 
-      <ButtonPost onPress={navigation.navigate('List')}>
-        <Feather
-          name="edit-2"
-          color="#FFF"
-          size={25}
-        />
-      </ButtonPost>
-    </Container>
-
+    </SafeAreaView>
   )
 }

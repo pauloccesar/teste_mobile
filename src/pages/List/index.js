@@ -15,8 +15,6 @@ export default function List() {
   const [banks, setBanks] = useState([])
   const [input, setInput] = useState([])
 
-
-
   useEffect(() => {
     fetch('https://brasilapi.com.br/api/banks/v1', {
       method: 'GET',
@@ -30,28 +28,7 @@ export default function List() {
         // console.log(data)
       })
   }, [])
-  const searchFilterFunction = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource
-      // Update FilteredDataSource
-      const newData = masterDataSource.filter(function (item) {
-        const itemData = item.code
-          ? item.code.toUpperCase()
-          : ''.toUpperCase();
-        const textData = text.toUpperCase();
-        return itemData.indexOf(textData) > -1;
-      });
-      setFilteredDataSource(newData);
-      setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      setFilteredDataSource(masterDataSource);
-      setSearch(text);
-    }
-  };
+
 
   const navigation = useNavigation();
 

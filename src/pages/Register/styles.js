@@ -23,7 +23,6 @@ height: 100%;
 `;
 
 export const View = styled.View`
-/* background-color: #3f2454; */
 padding-top: 50px;
 padding: 10px;
 margin: 8px 2%;

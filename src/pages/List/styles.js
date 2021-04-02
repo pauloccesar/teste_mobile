@@ -32,7 +32,7 @@ background-color: #f1f1f1;
 height: 40px;
 padding-left: 8px;
 font-size: 17px;
-color: #121212;
+color: #121212; 
 `;
 
 export const Container1 = styled.View`

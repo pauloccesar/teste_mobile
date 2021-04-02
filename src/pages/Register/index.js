@@ -11,8 +11,16 @@ export default function Register() {
   const ispb = bank.ispb;
   const code = bank.code;
   const fullName = bank.fullName;
-  const [input, setInput] = useState([])
+  const inputAgencia = "";
+  const inputConta = "";
+  const [input, setInput] = useState([]);
+  const [value, setValue] = React.useState('');
 
+  const onChange = event => {
+    localStorage.setItem('myValueInLocalStorage', event.target.value);
+
+    setValue(event.target.value);
+  }
 
   return (
     <SafeAreaView>
@@ -26,18 +34,20 @@ export default function Register() {
       </Container >
       <AreaInput>
         <Input
-          placeholder="Digite o código do banco"
+          placeholder="Digite a Agencia"
           placeholderTextColor='#353840'
-          value={input}
+          value={inputAgencia}
           anChangeText={(text) => setInput(text)}
+          keyboardType='numeric'
         />
       </AreaInput>
       <AreaInput>
         <Input
-          placeholder="Digite a agencia"
+          placeholder="Digite a Conta"
           placeholderTextColor='#353840'
-          value={input}
+          value={inputConta}
           anChangeText={(text) => setInput(text)}
+          keyboardType='numeric'
         />
       </AreaInput>
       <AreaInput>

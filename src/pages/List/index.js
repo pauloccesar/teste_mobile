@@ -1,19 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 import { SafeAreaView, View, styles, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import Feather from 'react-native-vector-icons/Feather';
+import Constants from 'expo-constants';
 import { FlatList, TextInput, Container, Text, AreaInput, Input, Container1 } from './styles';
+import { SearchBar } from 'react-native-elements';
 
 
 
 export default function List() {
-  // const navigation = useNavigation();
   const [search, setSearch] = useState('');
   const [masterDataSource, setMasterDataSource] = useState([]);
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [banks, setBanks] = useState([])
   const [input, setInput] = useState([])
+
+  const searchAction = (text) => {
+    const newData = data.filter(item => {
+      const itemData = `${item.code.toUpperCase()}`;
+      const textData = text.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+
+    });
+    this.setState({
+      data: newData,
+      search: text
+    });
+  }
 
   useEffect(() => {
     fetch('https://brasilapi.com.br/api/banks/v1', {
@@ -37,6 +51,7 @@ export default function List() {
   }
 
 
+
   return (
     <SafeAreaView>
       <Container1>
@@ -49,8 +64,10 @@ export default function List() {
           <Input
             placeholder="Digite o código do banco"
             placeholderTextColor='#353840'
-          // value={input}
-          // anChangeText={(text) => setInput(text)}
+            value={input}
+            onChangeText={text => this.searchAction(text)}
+            keyboardType='numeric'
+          // onPress={(input) => this.setState({ searchKey: input })}
           />
         </AreaInput>
       </Container1>
@@ -74,24 +91,5 @@ export default function List() {
       />
     </SafeAreaView >
   )
-}
-
-
-
-function BanksShow(item) {
-  const { ispb, name, code, fullName } = item.item;
-
-
-  return (
-    <TouchableOpacity onPress={() => { }}>
-      <Container>
-        <View >
-          <Text  >Teste</Text>
-        </View>
-      </Container>
-    </TouchableOpacity >
-  )
-
-
 }
 

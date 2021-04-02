@@ -38,3 +38,12 @@ font-Size: 18px;
 color: #fff;
 padding: 2px;
 `;
+
+export const AreaInput = styled.View`
+/* flex-direction: row; */
+margin: 10px;
+background-color: #FFF;
+align-items: flex-end;
+padding: 5px 10px;
+border-radius: 5px;
+`;

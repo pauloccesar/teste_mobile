@@ -34,15 +34,14 @@ export default function Home() {
 
     AsyncStorage.getItem("@MySuperStore:key").then((value) => {
       const usuario = JSON.parse(value);
-      // this.setState({ usuario });
-      // // const usuario = value;
+      setNamee(usuario.name)
+      setIspbb(usuario.ispb)
+      setCodee(usuario.code)
+      setFullNamee(usuario.fullName)
+      setContaa(usuario.conta)
       setAgenciaa(usuario.agencia)
       console.log(agenciaa);
-      // if (!!this.state.usuario) {
-      //   this.props.navigation.navigate("Home");
-      // } else {
-      //   this.props.navigation.navigate("Login");
-      // }
+
     });
   }
 
@@ -55,33 +54,19 @@ export default function Home() {
           onPress={() => navigateToRegister()}
         />
       </AreaInput>
-      <FlatList
-
-        // data={value}
-        // keyExtractor={(banks) => banks.name}
-        contentContainerStyle={{ flexGrow: 1 }}
-        renderItem={({ }) => (
-          <Container>
-            <View >
-              <Text  >{namee}</Text>
-              <Text  >{ispbb}</Text>
-              <Text >{codee}</Text>
-              <Text >{fullNamee}</Text>
-            </View>
-          </Container>
-        )}
-      />
-      {/* <Container >
-        <View >
-          <Text  >{name}</Text>
-          <Text  >{ispb}</Text>
-          <Text >{code}</Text>
-          <Text >{fullName}</Text>
-          <Text >{conta}</Text>
-          <Text >{agencia}</Text>
-        </View>
-      </Container > */}
-
+      <View>
+        <FlatList
+          data={[
+            { key: namee },
+            { key: ispbb },
+            { key: codee },
+            { key: fullNamee },
+            { key: contaa },
+            { key: agenciaa },
+          ]}
+          renderItem={({ item }) => <Text>{item.key}</Text>}
+        />
+      </View>
     </SafeAreaView> :
       <Container>
         <View >

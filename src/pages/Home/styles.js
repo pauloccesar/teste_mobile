@@ -50,3 +50,7 @@ align-items: flex-end;
 padding: 5px 10px;
 border-radius: 5px;
 `;
+
+export const Container1 = styled.View`
+padding-top: 40px;
+`;

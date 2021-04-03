@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, View, styles, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
@@ -15,18 +15,19 @@ export default function List() {
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [banks, setBanks] = useState([])
   const [input, setInput] = useState([])
+  const [newBanks, setNewBanks] = useState([])
 
   const searchAction = (text) => {
-    const newData = data.filter(item => {
-      const itemData = `${item.code.toUpperCase()}`;
+    const newData = banks.filter(item => {
+      const itemData = `${item.code}`;
       const textData = text.toUpperCase();
       return itemData.indexOf(textData) > -1;
 
     });
-    this.setState({
-      data: newData,
-      search: text
-    });
+    // this.setNewBanks({
+    //   data: newData,
+    //   search: text
+    // });
   }
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export default function List() {
             placeholder="Digite o código do banco"
             placeholderTextColor='#353840'
             value={input}
-            onChangeText={text => this.searchAction(text)}
+            onChangeText={text => searchAction(text)}
             keyboardType='numeric'
           // onPress={(input) => this.setState({ searchKey: input })}
           />

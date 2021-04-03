@@ -19,7 +19,10 @@ align-items: center;
 position: absolute;
 bottom: 6%;
 right: 6%;
+`;
 
+export const FlatList = styled.FlatList`
+background-color: #3f2454;
 `;
 
 export const ListPosts = styled.FlatList`

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, StatusBar, Button } from 'react-native';
+import { StyleSheet, Button, AsyncStorage } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Feather from 'react-native-vector-icons/Feather';
+import { withFormik } from 'formik';
 import { SafeAreaView, FlatList, TextInput, Container, Text, AreaInput, Input, View } from './styles';
+
 
 export default function Register() {
   const route = useRoute();
@@ -11,15 +13,25 @@ export default function Register() {
   const ispb = bank.ispb;
   const code = bank.code;
   const fullName = bank.fullName;
-  const inputAgencia = "";
-  const inputConta = "";
-  const [input, setInput] = useState([]);
-  const [value, setValue] = React.useState('');
 
-  const onChange = event => {
-    localStorage.setItem('myValueInLocalStorage', event.target.value);
+  const [conta, setConta] = useState('');
+  const [agencia, setAgencia] = useState('');
 
-    setValue(event.target.value);
+  async function submit() {
+    const formData = {
+      'conta': conta,
+      'agencia': agencia,
+      'name': name,
+      'ispb': ispb,
+      'code': code,
+      'fullName': fullName
+    }
+    try {
+      await AsyncStorage.setItem('@MySuperStore:key', JSON.stringify(formData));
+      console.log('certo')
+    } catch (error) {
+      // Error saving data
+    }
   }
 
   return (
@@ -36,8 +48,8 @@ export default function Register() {
         <Input
           placeholder="Digite a Agencia"
           placeholderTextColor='#353840'
-          value={inputAgencia}
-          anChangeText={(text) => setInput(text)}
+          value={agencia}
+          onChangeText={e => setAgencia(e)}
           keyboardType='numeric'
         />
       </AreaInput>
@@ -45,8 +57,8 @@ export default function Register() {
         <Input
           placeholder="Digite a Conta"
           placeholderTextColor='#353840'
-          value={inputConta}
-          anChangeText={(text) => setInput(text)}
+          value={conta}
+          onChangeText={e => setConta(e)}
           keyboardType='numeric'
         />
       </AreaInput>
@@ -54,7 +66,7 @@ export default function Register() {
         <Button
           title="Cadastrar"
           color="#be97c6"
-          onPress={() => Alert.alert('Button with adjusted color pressed')}
+          onPress={submit}
         />
       </AreaInput>
     </SafeAreaView>

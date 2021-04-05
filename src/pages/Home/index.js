@@ -34,11 +34,11 @@ export default function Home() {
       /*---------------------------*/
       // AsyncStorage.setItem("@MySuperStore:key", JSON.stringify([]));
 
-
     });
   }
 
   return (
+    pegaDados(),
     !loading ? <SafeAreaView>
       <Button
         title="Cadastrar"

@@ -34,7 +34,7 @@ export default function Register() {
         newProduct.push(formData)
       });
       AsyncStorage.setItem('@MySuperStore:key', JSON.stringify(newProduct));
-      navigateToRegister();
+      navigateToRegister()
     }
     catch (error) {
     }

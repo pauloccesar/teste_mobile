@@ -27,11 +27,23 @@ export default function Register() {
       'fullName': fullName
     }
     try {
-      await AsyncStorage.setItem('@MySuperStore:key', JSON.stringify(formData));
-      console.log('certo')
-    } catch (error) {
-      // Error saving data
+      let newProduct = [];
+      await AsyncStorage.getItem("@MySuperStore:key").then((value) => {
+        console.log(JSON.parse(value));
+        newProduct = JSON.parse(value)
+        newProduct.push(formData)
+      });
+      AsyncStorage.setItem('@MySuperStore:key', JSON.stringify(newProduct));
+      navigateToRegister();
     }
+    catch (error) {
+    }
+  }
+
+  const navigation = useNavigation();
+
+  function navigateToRegister() {
+    navigation.navigate('Home', {})
   }
 
   return (

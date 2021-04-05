@@ -38,3 +38,9 @@ color: #121212;
 export const Container1 = styled.View`
 padding-top: 40px;
 `;
+
+export const SafeAreaView = styled.View`
+background-color: #FFF;
+padding-top: 50px;
+height: 100%;
+`;

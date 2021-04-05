@@ -25,11 +25,6 @@ export const FlatList = styled.FlatList`
 background-color: #3f2454;
 `;
 
-export const ListPosts = styled.FlatList`
-flex:1;
-background-color: #f1f1f1;
-`;
-
 export const SafeAreaView = styled.View`
 background-color: #FFF;
 padding-top: 50px;
@@ -43,7 +38,6 @@ padding: 2px;
 `;
 
 export const AreaInput = styled.View`
-/* flex-direction: row; */
 margin: 10px;
 background-color: #FFF;
 align-items: flex-end;
@@ -52,5 +46,8 @@ border-radius: 5px;
 `;
 
 export const Container1 = styled.View`
-padding-top: 40px;
+background-color: #3f2454;
+elevation: 3;
+border-radius: 8px;
+box-shadow: 1px 1px 3px rgba(18,18,18, 0.2);
 `;

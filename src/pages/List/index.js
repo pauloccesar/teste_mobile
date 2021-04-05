@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { SafeAreaView, View, styles, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
@@ -14,21 +14,13 @@ export default function List() {
   const [masterDataSource, setMasterDataSource] = useState([]);
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [banks, setBanks] = useState([])
-  const [input, setInput] = useState([])
+  const [input, setInput] = useState("")
   const [newBanks, setNewBanks] = useState([])
-
-  const searchAction = (text) => {
-    const newData = banks.filter(item => {
-      const itemData = `${item.code}`;
-      const textData = text.toUpperCase();
-      return itemData.indexOf(textData) > -1;
-
-    });
-    // this.setNewBanks({
-    //   data: newData,
-    //   search: text
-    // });
-  }
+  const filterBanks = useMemo(() => {
+    console.log(input, banks)
+    return input !== "" ? banks.filter((bank) => String(bank.code).includes(input))
+      : banks
+  }, [input, banks])
 
   useEffect(() => {
     fetch('https://brasilapi.com.br/api/banks/v1', {
@@ -40,7 +32,6 @@ export default function List() {
       .then(response => response.json())
       .then(data => {
         setBanks(data)
-        // console.log(data)
       })
   }, [])
 
@@ -50,8 +41,6 @@ export default function List() {
   function navigateToRegister(bank) {
     navigation.navigate('Register', { bank })
   }
-
-
 
   return (
     <SafeAreaView>
@@ -66,15 +55,14 @@ export default function List() {
             placeholder="Digite o código do banco"
             placeholderTextColor='#353840'
             value={input}
-            onChangeText={text => searchAction(text)}
+            onChangeText={text => setInput(text)}
             keyboardType='numeric'
-          // onPress={(input) => this.setState({ searchKey: input })}
           />
         </AreaInput>
       </Container1>
       <FlatList
 
-        data={banks}
+        data={filterBanks}
         keyExtractor={(banks) => banks.name}
         contentContainerStyle={{ flexGrow: 1 }}
         renderItem={({ item: bank }) => (
